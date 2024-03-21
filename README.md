@@ -3,7 +3,6 @@
 **Group members:**
 - RDT689
 - QFG978
-- C
 
 This repository contains  
 1. Inaugural project. 
