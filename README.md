@@ -1,8 +1,8 @@
-# \[Group name\]
+# \[christoffer-victor\]
 
 **Group members:**
 - RDT689
-- B
+- QFG978
 - C
 
 This repository contains  
