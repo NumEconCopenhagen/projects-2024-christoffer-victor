@@ -42,7 +42,15 @@ class ExchangeEconomyClass:
 
         return eps1,eps2
 
+    def market_clearing_price(self, p1):
+        par = self.par
 
+        x1A,x2A = self.demand_A(p1)
+        x1B,x2B = self.demand_B(p1)
+
+        mk_clear = x1A-par.w1A + x1B-(1-par.w1A)-(x2A-par.w2A + x2B-(1-par.w2A))
+
+        return mk_clear
 
 
 
