@@ -1,3 +1,4 @@
+from scipy.optimize import brentq
 from types import SimpleNamespace
 
 class ExchangeEconomyClass:
@@ -51,57 +52,10 @@ class ExchangeEconomyClass:
         mk_clear = x1A-par.w1A + x1B-(1-par.w1A)-(x2A-par.w2A + x2B-(1-par.w2A))
 
         return mk_clear
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def square(x):
-    """ square numpy array
     
-    Args:
-    
-        x (ndarray): input array
-        
-    Returns:
-    
-        y (ndarray): output array
-    
-    """
-    
-    y = x**2
-    return y
-
+    def find_allocation(self, w1A, w2A):
+        self.par.w1A = w1A
+        self.par.w2A = w2A
+        p1 = brentq(self.market_clearing_price, 0.01, 10)
+        x1A, x2A = self.demand_A(p1)
+        return x1A, x2A
