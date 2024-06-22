@@ -60,6 +60,7 @@ class ProductionEconomyClass:
         res = optimize.minimize_scalar(obj, bounds=(0,1), method='bounded')
 
         l = res.x
+        pi1, pi2 = self.pi(p1, p2)
         c1 = par.alpha*(l+par.T+self.pi1(p1)+self.pi2(p2))/p1
         c2 = (1-par.alpha)*(l+par.T+self.pi1(p1)+self.pi2(p2))/(p2*par.tau)
 
