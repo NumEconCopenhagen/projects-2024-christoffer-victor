@@ -55,7 +55,7 @@ class ProductionEconomyClass:
         pi2 = self.pi2(p2)
 
         c1_l = par.alpha*(l+par.T+pi1+pi2)/p1
-        c2_l = (1-par.alpha)*(l+par.T+pi1+pi2)/(p2*par.tau)
+        c2_l = (1-par.alpha)*(l+par.T+pi1+pi2)/(p2+par.tau)
 
         return np.log(c1_l**par.alpha*c2_l**(1-par.alpha))-par.nu*l**(1+par.epsilon)/(1+par.epsilon)
     
@@ -69,7 +69,7 @@ class ProductionEconomyClass:
         pi1 = self.pi1(p1)
         pi2 = self.pi2(p2)
         c1 = par.alpha*(l+par.T+pi1+pi2)/p1
-        c2 = (1-par.alpha)*(l+par.T+pi1+pi2)/(p2*par.tau)
+        c2 = (1-par.alpha)*(l+par.T+pi1+pi2)/(p2+par.tau)
 
         return l, c1, c2
     
