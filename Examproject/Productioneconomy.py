@@ -46,8 +46,7 @@ class ProductionEconomyClass:
 
     def utility(self, p1, p2, l):
         par = self.par
-        pi1 = self.pi1(p1)
-        pi2 = self.pi2(p2)
+        pi1, pi2 = self.pi1(p1, p2)
 
         c1_l = par.alpha*(l+par.T+pi1+pi2)/p1
         c2_l = (1-par.alpha)*(l+par.T+pi1+pi2)/(p2*par.tau)
