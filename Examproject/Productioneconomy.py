@@ -61,8 +61,8 @@ class ProductionEconomyClass:
 
         l = res.x
         pi1, pi2 = self.pi(p1, p2)
-        c1 = par.alpha*(l+par.T+self.pi1(p1)+self.pi2(p2))/p1
-        c2 = (1-par.alpha)*(l+par.T+self.pi1(p1)+self.pi2(p2))/(p2*par.tau)
+        c1 = par.alpha*(l+par.T+pi1+pi2)/p1
+        c2 = (1-par.alpha)*(l+par.T+pi1+pi2)/(p2*par.tau)
 
         return l, c1, c2
     
