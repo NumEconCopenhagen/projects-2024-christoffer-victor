@@ -103,3 +103,4 @@ class ProductionEconomyClass:
         p1_opt, p2_opt = result.x
         return p1_opt, p2_opt
     
+        
