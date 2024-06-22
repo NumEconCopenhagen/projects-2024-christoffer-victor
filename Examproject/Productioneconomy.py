@@ -37,16 +37,22 @@ class ProductionEconomyClass:
 
         return par.A*l1**par.gamma, par.A*l2**par.gamma
 
-    def pi(self, p1, p2):
+    def pi1(self, p1):
         par = self.par
 
-        return (1-par.gamma)/par.gamma*(p1*par.A*par.gamma)**(1/(1-par.gamma)), (1-par.gamma)/par.gamma*(p2*par.A*par.gamma)**(1/(1-par.gamma))
+        return (1-par.gamma)/par.gamma*(p1*par.A*par.gamma)**(1/(1-par.gamma))
+    
+    def pi2(self, p2):
+        par = self.par
+
+        return (1-par.gamma)/par.gamma*(p2*par.A*par.gamma)**(1/(1-par.gamma))
     
     # Households
 
     def utility(self, p1, p2, l):
         par = self.par
-        pi1, pi2 = self.pi(p1, p2)
+        pi1 = self.pi(p1,)
+        pi2 = self.pi(p2)
 
         c1_l = par.alpha*(l+par.T+pi1+pi2)/p1
         c2_l = (1-par.alpha)*(l+par.T+pi1+pi2)/(p2*par.tau)
