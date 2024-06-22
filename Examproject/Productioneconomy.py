@@ -1,5 +1,6 @@
 import numpy as np
 from scipy import optimize
+from scipy.optimize import minimize
 from types import SimpleNamespace
 
 class ProductionEconomyClass:
@@ -87,4 +88,18 @@ class ProductionEconomyClass:
         eps3 = c2 - y2
 
         return eps1, eps2, eps3
+    
+    def objective_function(self, p):
+        p1, p2 = p
+        eps1, eps2, eps3 = self.check_market_clearing(p1, p2)
+        return eps1**2 + eps2**2 + eps3**2
+
+    def find_market_equilibrium(self):
+        # Initial guess for p1 and p2
+        initial_guess = [1, 1]
+        # Minimize the objective function
+        result = minimize(self.objective_function, initial_guess)
+        # Extract optimized p1 and p2
+        p1_opt, p2_opt = result.x
+        return p1_opt, p2_opt
     
