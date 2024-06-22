@@ -66,6 +66,7 @@ class ProductionEconomyClass:
 
         return l, c1, c2
     
+    # Market clearing
     def check_market_clearing(self, p1, p2):
         par = self.par
 
