@@ -57,7 +57,7 @@ class ProductionEconomyClass:
         par = self.par
 
         obj = lambda l: -self.utility(p1, p2, l)
-        res = optimize.minimize_scalar(obj, bounds=(0,1), method='bounded')
+        res = optimize.minimize_scalar(obj, bounds=(0.01,1), method='bounded')
 
         l = res.x
         pi1, pi2 = self.pi(p1, p2)
