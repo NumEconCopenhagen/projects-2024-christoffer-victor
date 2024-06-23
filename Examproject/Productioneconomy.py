@@ -103,4 +103,21 @@ class ProductionEconomyClass:
         p1_opt, p2_opt = result.x
         return p1_opt, p2_opt
     
-        
+    def social_welfare_function(self, tau):
+        self.par.tau = tau
+        p1, p2 = self.find_market_equilibrium()
+        l, c1, c2 = self.l(p1, p2)
+        self.par.T = tau * c2
+        l1, l2 = self.l_firm(p1, p2)
+        y1, y2 = self.y_firm(l1, p1, l2, p2)
+        U = np.log(c1**self.par.alpha * c2**(1-self.par.alpha)) - self.par.nu*l**(1+self.par.epsilon)/(1+self.par.epsilon)
+        SWF = U - self.par.kappa*y2
+        return -SWF
+
+    def optimize_social_welfare_function(self):
+        objective_function = lambda tau: self.social_welfare_function(tau)
+        result = minimize(objective_function, 0)
+        tau_opt = result.x
+        _, _, c2_opt = self.l(*self.find_market_equilibrium())
+        T_opt = tau_opt * c2_opt
+        return tau_opt, T_opt
