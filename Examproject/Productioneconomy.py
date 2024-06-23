@@ -69,8 +69,8 @@ class ProductionEconomyClass:
         l = res.x
         pi1 = self.pi1(p1)
         pi2 = self.pi2(p2)
-        c1 = par.alpha*(l+par.T+pi1+pi2)/p1
-        c2 = (1-par.alpha)*(l+par.T+pi1+pi2)/(p2+par.tau)
+        c1 = par.alpha*((p2+par.tau)/(p2+par.alpha*par.tau))*(l+pi1+pi2)/p1
+        c2 = (1-par.alpha)*(l+pi1+pi2)/(p2+par.alpha*par.tau)
 
         return l, c1, c2
     
@@ -103,21 +103,11 @@ class ProductionEconomyClass:
         p1_opt, p2_opt = result.x
         return p1_opt, p2_opt
     
-    def social_welfare_function(self, tau):
-        self.par.tau = tau
-        p1, p2 = self.find_market_equilibrium()
-        l, c1, c2 = self.l(p1, p2)
-        self.par.T = tau * c2
-        l1, l2 = self.l_firm(p1, p2)
-        y1, y2 = self.y_firm(l1, p1, l2, p2)
-        U = np.log(c1**self.par.alpha * c2**(1-self.par.alpha)) - self.par.nu*l**(1+self.par.epsilon)/(1+self.par.epsilon)
-        SWF = U - self.par.kappa*y2
-        return -SWF
+    def swf(self, p1, p2):
+        par = self.par
 
-    def optimize_social_welfare_function(self):
-        objective_function = lambda tau: self.social_welfare_function(tau)
-        result = minimize(objective_function, 0)
-        tau_opt = result.x
-        _, _, c2_opt = self.l(*self.find_market_equilibrium())
-        T_opt = tau_opt * c2_opt
-        return tau_opt, T_opt
+        l = self.l(p1, p2)[0]
+        pi1 = self.pi1(p1)
+        pi2 = self.pi2(p2)
+
+        return np.log((par.alpha*(p2+par.tau)/(p2+par.alpha*par.tau)*(l+pi1+pi2)/p1)**par.alpha*((1-par.alpha)*(l+pi1+pi2)/(p2+par.alpha*par.tau))**(1-par.alpha))-par.nu*l**(1+par.epsilon)/(1+par.epsilon)-par.kappa*par.A*(p2*par.A*par.gamma)**(par.gamma/(1-par.gamma))
