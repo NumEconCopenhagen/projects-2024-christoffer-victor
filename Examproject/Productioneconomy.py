@@ -111,3 +111,10 @@ class ProductionEconomyClass:
         pi2 = self.pi2(p2)
 
         return np.log((par.alpha*(p2+par.tau)/(p2+par.alpha*par.tau)*(l+pi1+pi2)/p1)**par.alpha*((1-par.alpha)*(l+pi1+pi2)/(p2+par.alpha*par.tau))**(1-par.alpha))-par.nu*l**(1+par.epsilon)/(1+par.epsilon)-par.kappa*par.A*(p2*par.A*par.gamma)**(par.gamma/(1-par.gamma))
+    
+    def negative_swf(self, tau):
+        par = self.par
+        self.par.tau = tau
+        p1_opt, p2_opt = self.find_market_equilibrium()
+        swf = self.swf(p1_opt, p2_opt)
+        return -swf
