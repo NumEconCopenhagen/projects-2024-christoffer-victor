@@ -6,5 +6,6 @@
 
 This repository contains  
 1. Inaugural project. 
-2. Data project. We fetch data from **source x** on **y** and show that ...
-3. Model project. We model ...
+2. Data project. We fetch data from Statistikbanken.dk on components of the national identity and show which components are counter/pro cyclical.
+3. Model project. We model the Solow-Swan model with learning by doing technology.
+4. Exam project. 
