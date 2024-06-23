@@ -6,8 +6,8 @@ The **results** of the project can be seen from running [dataproject.ipynb](data
 
 We apply the **following datasets**:
 
-1. National.csv (Statistikbanken.dk - NAN1 (https://www.statistikbanken.dk/statbank5a/default.asp?w=1920)) 
-1. Employ.csv (Statistikbanken.dk - NAN1 (https://www.statistikbanken.dk/statbank5a/default.asp?w=1920))
+1. National.csv (Statistikbanken.dk - NKN1 (https://www.statistikbanken.dk/statbank5a/default.asp?w=1920)) 
+1. Employ.csv (Statistikbanken.dk - NKN1 (https://www.statistikbanken.dk/statbank5a/default.asp?w=1920))
 
 **Dependencies:** Apart from a standard Anaconda Python 3 installation, the project requires the following installations:
 
