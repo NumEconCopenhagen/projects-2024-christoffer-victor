@@ -4,7 +4,7 @@ from scipy.optimize import brentq
 from scipy.optimize import fsolve
 import numpy as np
 
-class ASADClass:
+class SolowClass:
 
     def __init__(self):
 
